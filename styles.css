@@ -117,6 +117,7 @@ body::before {
   align-items: center;
   gap: 24px;
   margin: 10px 0 18px;
+  max-width: 100%;
 }
 
 .masters-lockup-logo {
@@ -135,6 +136,7 @@ body::before {
   font-weight: 700;
   letter-spacing: 0.01em;
   line-height: 0.92;
+  min-width: 0;
 }
 
 .hero-text,
@@ -553,6 +555,7 @@ input:focus-visible {
 
   .masters-lockup {
     align-items: center;
+    gap: 16px;
   }
 
   .masters-lockup-logo {
@@ -590,5 +593,44 @@ input:focus-visible {
 
   .summary-metrics {
     grid-template-columns: 1fr;
+  }
+
+  .hero-copy {
+    padding-top: 26px;
+  }
+
+  .masters-lockup {
+    align-items: center;
+    gap: 12px;
+  }
+
+  .masters-lockup-logo {
+    width: 118px;
+  }
+
+  .masters-lockup h1 {
+    font-size: clamp(2.2rem, 11vw, 3.2rem);
+    line-height: 0.96;
+    word-break: normal;
+  }
+
+  .rules-card {
+    width: 100%;
+    margin: 18px 0 0;
+    padding: 18px;
+  }
+
+  .rules-card h2 {
+    font-size: 1.85rem;
+  }
+
+  .rules-list {
+    gap: 10px;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .rules-list li {
+    max-width: none;
   }
 }
