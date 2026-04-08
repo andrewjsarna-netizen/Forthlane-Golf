@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masters Pool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="home">
+    <div class="page-shell">
+      <header class="hero">
+        <nav class="topbar">
+          <a class="button button-ghost" href="./create-team.html">Build a Team</a>
+        </nav>
+
+        <div class="hero-copy">
+          <div class="masters-lockup" aria-label="The Forthlane Masters Pool">
+            <img
+              class="masters-lockup-logo"
+              src="./Masters_Logo.png.webp"
+              alt="Masters-style logo"
+            />
+            <h1>The Forthlane Masters Pool</h1>
+          </div>
+        </div>
+
+        <section class="rules-card">
+          <h2>Pool Rules</h2>
+          <ul class="rules-list">
+            <li>Pick up to 5 golfers.</li>
+            <li>Total OWGR cost must be less than 25.</li>
+            <li>Roster costs are based on each golfer’s current OWGR average points.</li>
+            <li>Winner is the roster that earns the most tournament prize money.</li>
+            <li>Andrew vibe coded the site, so if something looks off, give him a heads up and a little grace.</li>
+          </ul>
+          <p class="fine-print">
+            Golfers without a current OWGR average count as 0 points. Amateurs are still
+            ineligible for roster selection.
+          </p>
+        </section>
+      </header>
+
+      <main class="content-grid">
+        <section class="panel" id="teams">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Submitted Entries</p>
+            </div>
+            <a class="button button-small" href="./create-team.html">Add Team</a>
+          </div>
+
+          <div id="teams-empty" class="empty-state">
+            <p>No teams have been entered yet.</p>
+            <a class="button" href="./create-team.html">Create the First Team</a>
+          </div>
+
+          <div id="teams-list" class="teams-grid" aria-live="polite"></div>
+        </section>
+
+        <aside class="panel compact-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Field Snapshot</p>
+              <h2>Lowest-Cost Targets</h2>
+            </div>
+          </div>
+          <div id="value-board" class="value-board" aria-live="polite"></div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./supabase-config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+  </html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Build a Team | Masters Pool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="create">
+    <div class="page-shell">
+      <header class="subhero">
+        <nav class="topbar">
+          <a class="brand" href="./index.html">Masters Pool</a>
+          <a class="button button-ghost" href="./index.html">Back Home</a>
+        </nav>
+
+        <div class="subhero-copy">
+          <p class="eyebrow">Roster Builder</p>
+          <h1>Lock in your lineup.</h1>
+          <p>
+            Choose up to five golfers from the 2026 Masters field and keep the total OWGR average
+            point cost under 25.
+          </p>
+        </div>
+      </header>
+
+      <main class="builder-layout">
+        <section class="panel">
+          <form id="team-form" class="team-form">
+            <label class="form-field">
+              <span>Team name</span>
+              <input
+                id="team-name"
+                name="teamName"
+                type="text"
+                maxlength="40"
+                placeholder="Example: Amen Corner Aces"
+                required
+              />
+            </label>
+
+            <label class="form-field">
+              <span>Team owner</span>
+              <input
+                id="team-owner"
+                name="teamOwner"
+                type="text"
+                maxlength="40"
+                placeholder="Example: Andrew"
+                required
+              />
+            </label>
+
+            <div class="section-heading form-heading">
+              <div>
+                <p class="eyebrow">Available Golfers</p>
+                <h2>Select Your Golfers</h2>
+              </div>
+              <label class="search-field">
+                <span class="sr-only">Search golfers</span>
+                <input id="golfer-search" type="search" placeholder="Search the field" />
+              </label>
+            </div>
+
+            <div id="golfer-options" class="golfer-options" aria-live="polite"></div>
+
+            <div class="form-actions">
+              <p id="form-message" class="form-message" role="status"></p>
+              <button class="button" type="submit">Submit Team</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="panel sticky-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Live Cap Sheet</p>
+              <h2>Your Lineup</h2>
+            </div>
+          </div>
+
+          <div class="summary-metrics">
+            <div class="metric-card">
+              <span>Golfers</span>
+              <strong id="selected-count">0 / 5 max</strong>
+            </div>
+            <div class="metric-card">
+              <span>OWGR Avg Cost</span>
+              <strong id="selected-points">0 / &lt;25</strong>
+            </div>
+          </div>
+
+          <div id="selected-players" class="selected-players"></div>
+          <p class="fine-print">
+            Teams can have up to five golfers, amateurs cannot be selected, and the lineup must
+            finish below 25 total average points.
+          </p>
+        </aside>
+      </main>
+    </div>
+
+    <script src="./recent-form-data.generated.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./supabase-config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+  </html>
