@@ -823,22 +823,29 @@ input:focus-visible {
 
 @media (max-width: 640px) {
   body[data-page="scoreboard"] .topbar {
+    position: relative;
     align-items: flex-start;
+    padding-top: 44px;
   }
 
   body[data-page="scoreboard"] .topbar-actions {
-    width: auto;
-    margin-left: auto;
-    align-items: flex-end;
+    width: 100%;
+    margin-left: 0;
+    align-items: stretch;
     gap: 8px;
   }
 
   body[data-page="scoreboard"] .topbar-actions .button {
-    width: auto;
+    width: 100%;
+    position: relative;
+    z-index: 2;
   }
 
   body[data-page="scoreboard"] .topbar-logo {
-    width: 96px;
-    align-self: flex-end;
+    width: 84px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
   }
 }
