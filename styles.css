@@ -819,6 +819,37 @@ input:focus-visible {
   .scoreboard-table {
     min-width: 820px;
   }
+
+  body[data-page="home"] .topbar {
+    position: relative;
+    padding-top: 34px;
+  }
+
+  body[data-page="home"] .topbar-actions {
+    width: 100%;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  body[data-page="home"] .topbar-actions .button {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  body[data-page="home"] .partnership-label {
+    align-self: flex-end;
+    font-size: 0.75rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  body[data-page="home"] .topbar-logo {
+    width: 92px;
+    align-self: flex-end;
+    position: relative;
+    z-index: 1;
+  }
 }
 
 @media (max-width: 640px) {
