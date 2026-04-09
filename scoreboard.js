@@ -620,6 +620,29 @@ function renderScoreboardRows(teams, leaderboardMap) {
       tbody.appendChild(tr);
     });
   });
+
+  fitScoreboardTableForMobile();
+}
+
+function fitScoreboardTableForMobile() {
+  const wrap = document.querySelector(".scoreboard-table-wrap");
+  const table = document.querySelector(".scoreboard-table");
+  if (!wrap || !table) return;
+
+  table.style.transform = "";
+  table.style.transformOrigin = "";
+  wrap.style.height = "";
+
+  if (window.innerWidth > 640) return;
+
+  const availableWidth = wrap.clientWidth;
+  const naturalWidth = table.scrollWidth;
+  if (!availableWidth || !naturalWidth) return;
+
+  const scale = Math.min(1, availableWidth / naturalWidth);
+  table.style.transform = `scale(${scale})`;
+  table.style.transformOrigin = "top left";
+  wrap.style.height = `${table.offsetHeight * scale}px`;
 }
 
 async function renderScoreboard() {
@@ -656,3 +679,4 @@ async function renderScoreboard() {
 seedScoreboardDemoTeam();
 renderScoreboard();
 window.setInterval(renderScoreboard, SCOREBOARD_REFRESH_MS);
+window.addEventListener("resize", fitScoreboardTableForMobile);

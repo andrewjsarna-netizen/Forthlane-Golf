@@ -716,6 +716,20 @@ input:focus-visible {
     align-items: stretch;
   }
 
+  .topbar {
+    gap: 12px;
+  }
+
+  .topbar-actions {
+    gap: 10px;
+    width: 100%;
+  }
+
+  .topbar-actions .button {
+    width: 100%;
+    pointer-events: auto;
+  }
+
   .topbar-logo {
     width: 150px;
     align-self: flex-end;
@@ -763,6 +777,15 @@ input:focus-visible {
     width: 118px;
   }
 
+  .topbar-actions {
+    align-items: stretch;
+  }
+
+  .topbar-logo,
+  .partnership-label {
+    align-self: center;
+  }
+
   .masters-lockup h1 {
     font-size: clamp(2.2rem, 11vw, 3.2rem);
     line-height: 0.96;
@@ -787,5 +810,13 @@ input:focus-visible {
 
   .rules-list li {
     max-width: none;
+  }
+
+  .scoreboard-table-wrap {
+    overflow: visible;
+  }
+
+  .scoreboard-table {
+    min-width: 820px;
   }
 }
