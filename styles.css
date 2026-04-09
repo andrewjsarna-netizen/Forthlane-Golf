@@ -820,3 +820,25 @@ input:focus-visible {
     min-width: 820px;
   }
 }
+
+@media (max-width: 640px) {
+  body[data-page="scoreboard"] .topbar {
+    align-items: flex-start;
+  }
+
+  body[data-page="scoreboard"] .topbar-actions {
+    width: auto;
+    margin-left: auto;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  body[data-page="scoreboard"] .topbar-actions .button {
+    width: auto;
+  }
+
+  body[data-page="scoreboard"] .topbar-logo {
+    width: 96px;
+    align-self: flex-end;
+  }
+}
