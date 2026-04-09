@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Scoreboard | Forthlane Masters Pool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="scoreboard">
+    <div class="page-shell">
+      <header class="subhero scoreboard-hero">
+        <nav class="topbar">
+          <a class="brand" href="./index.html">Masters Pool</a>
+          <div class="topbar-actions">
+            <a class="button button-ghost" href="./index.html">Back Home</a>
+            <img class="topbar-logo" src="./rampart-gold-wordmark.svg" alt="Rampart wordmark" />
+          </div>
+        </nav>
+
+        <div class="subhero-copy">
+          <p class="eyebrow">Live Leaderboard</p>
+          <h1>Pool Scoreboard</h1>
+          <p id="scoreboard-status" class="hero-text">
+            Loading live Masters positions and team standings...
+          </p>
+        </div>
+      </header>
+
+      <main class="scoreboard-layout">
+        <section class="leaderboard-sign panel">
+          <div class="leaderboard-header">
+            <h2>Leaders</h2>
+            <p id="leaderboard-updated" class="fine-print">Auto-refresh every 60 seconds</p>
+          </div>
+
+          <div class="scoreboard-table-wrap">
+            <table class="scoreboard-table">
+              <thead>
+                <tr>
+                  <th>Team Pos</th>
+                  <th>Team</th>
+                  <th>Owner</th>
+                  <th>Player</th>
+                  <th>Pos</th>
+                  <th>Score</th>
+                  <th>Thru</th>
+                  <th>Est. Winnings</th>
+                </tr>
+              </thead>
+              <tbody id="scoreboard-body">
+                <tr>
+                  <td colspan="8" class="scoreboard-empty">Loading teams and live scoring...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./supabase-config.js"></script>
+    <script src="./scoreboard.js"></script>
+  </body>
+  </html>

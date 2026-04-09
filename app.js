@@ -1,6 +1,8 @@
 const STORAGE_KEY = "masters-pool-teams-v2";
 const MAX_PLAYERS = 5;
 const POINT_CAP = 25;
+const REGISTRATION_OPEN = false;
+const DEMO_TEAM_ENABLED = true;
 const SUPABASE_TABLE = "teams";
 const supabaseConfig = window.SUPABASE_CONFIG || { url: "", anonKey: "" };
 const supabaseClient =
@@ -156,6 +158,46 @@ function getStoredTeams() {
 
 function saveStoredTeams(teams) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(teams));
+}
+
+function seedDemoTeam() {
+  if (!DEMO_TEAM_ENABLED) return;
+  if (supabaseClient) return;
+
+  const existingTeams = getStoredTeams();
+  const hasDemo = existingTeams.some(
+    (team) => (team.teamName || "").toLowerCase() === "aces"
+  );
+
+  if (hasDemo) return;
+
+  const demoPlayers = [
+    "Harris English",
+    "Akshay Bhatia",
+    "Viktor Hovland",
+    "Patrick Reed",
+    "Bryson DeChambeau"
+  ]
+    .map((name) => golferByName.get(name))
+    .filter(Boolean)
+    .map((player) => ({
+      name: player.name,
+      rank: player.rank,
+      avgPoints: player.avgPoints
+    }));
+
+  if (!demoPlayers.length) return;
+
+  existingTeams.push({
+    id: "demo-aces",
+    teamName: "aces",
+    teamOwner: "Demo",
+    totalPoints: getTotalPoints(demoPlayers),
+    createdAt: new Date().toISOString(),
+    players: demoPlayers
+  });
+
+  saveStoredTeams(existingTeams);
 }
 
 async function fetchTeams() {
@@ -378,6 +420,17 @@ function renderCreatePage() {
 
   const selectedNames = new Set();
 
+  if (!REGISTRATION_OPEN) {
+    teamForm
+      .querySelectorAll("input, button")
+      .forEach((element) => {
+        if (element.id !== "golfer-search") {
+          element.disabled = true;
+        }
+      });
+    setMessage("Registration is closed.", "error");
+  }
+
   function setMessage(message, type = "") {
     formMessage.textContent = message;
     formMessage.className = `form-message${type ? ` ${type}` : ""}`;
@@ -525,6 +578,11 @@ function renderCreatePage() {
   teamForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
+    if (!REGISTRATION_OPEN) {
+      setMessage("Registration is closed.", "error");
+      return;
+    }
+
     const teamName = teamNameInput.value.trim();
     const teamOwner = teamOwnerInput.value.trim();
     const selectedPlayers = getSelectedGolfers([...selectedNames]);
@@ -587,9 +645,11 @@ function renderCreatePage() {
 }
 
 if (document.body.dataset.page === "home") {
+  seedDemoTeam();
   renderHomePage();
 }
 
 if (document.body.dataset.page === "create") {
+  seedDemoTeam();
   renderCreatePage();
 }

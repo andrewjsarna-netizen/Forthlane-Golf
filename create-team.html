@@ -17,7 +17,11 @@
       <header class="subhero">
         <nav class="topbar">
           <a class="brand" href="./index.html">Masters Pool</a>
-          <a class="button button-ghost" href="./index.html">Back Home</a>
+          <div class="topbar-actions">
+            <a class="button button-ghost" href="./scoreboard.html">Live Scoreboard</a>
+            <a class="button button-ghost" href="./index.html">Back Home</a>
+            <img class="topbar-logo" src="./rampart-gold-wordmark.svg" alt="Rampart wordmark" />
+          </div>
         </nav>
 
         <div class="subhero-copy">
@@ -32,6 +36,9 @@
 
       <main class="builder-layout">
         <section class="panel">
+          <div class="registration-banner">
+            Registration is closed. New teams can no longer be submitted.
+          </div>
           <form id="team-form" class="team-form">
             <label class="form-field">
               <span>Team name</span>
@@ -72,7 +79,7 @@
 
             <div class="form-actions">
               <p id="form-message" class="form-message" role="status"></p>
-              <button class="button" type="submit">Submit Team</button>
+              <button class="button button-disabled" type="submit" disabled>Registration Closed</button>
             </div>
           </form>
         </section>
