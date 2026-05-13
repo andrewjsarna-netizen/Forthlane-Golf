@@ -83,6 +83,8 @@ body::before {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  position: relative;
+  z-index: 3;
 }
 
 .topbar-actions {
@@ -90,6 +92,8 @@ body::before {
   align-items: center;
   gap: 18px;
   margin-left: auto;
+  position: relative;
+  z-index: 3;
 }
 
 .topbar-logo {
