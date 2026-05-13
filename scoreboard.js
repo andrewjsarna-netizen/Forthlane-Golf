@@ -1,59 +1,83 @@
-const SCOREBOARD_STORAGE_KEY = "masters-pool-teams-v2";
-const SCOREBOARD_SUPABASE_TABLE = "teams";
-const MASTERS_EVENT_ID = "401811941";
-const SCOREBOARD_REFRESH_MS = 60000;
+const SCOREBOARD_STORAGE_KEY = "pga-championship-pool-teams-v1";
+const SCOREBOARD_SUPABASE_TABLE = "pga_championship_teams_2026";
+const PGA_CHAMPIONSHIP_EVENT_ID = "401811947";
+const SCOREBOARD_REFRESH_MS = 600000;
 const SCOREBOARD_DEMO_TEAM_ENABLED = true;
-const MASTERS_PAYOUTS = {
-  1: 3600000,
-  2: 2160000,
-  3: 1360000,
-  4: 960000,
-  5: 800000,
-  6: 720000,
-  7: 670000,
-  8: 620000,
-  9: 580000,
-  10: 540000,
-  11: 500000,
-  12: 460000,
-  13: 420000,
-  14: 380000,
-  15: 360000,
-  16: 340000,
-  17: 320000,
-  18: 300000,
-  19: 280000,
-  20: 260000,
-  21: 240000,
-  22: 224000,
-  23: 208000,
-  24: 192000,
-  25: 176000,
-  26: 160000,
-  27: 154000,
-  28: 148000,
-  29: 142000,
-  30: 136000,
-  31: 130000,
-  32: 124000,
-  33: 118000,
-  34: 113000,
-  35: 108000,
-  36: 103000,
-  37: 98000,
-  38: 94000,
-  39: 90000,
-  40: 86000,
-  41: 82000,
-  42: 78000,
-  43: 74000,
-  44: 70000,
-  45: 66000,
-  46: 62000,
-  47: 58000,
-  48: 54800,
-  49: 52000,
-  50: 50400
+const PGA_CHAMPIONSHIP_PAYOUTS = {
+  1: 3420000,
+  2: 2052000,
+  3: 1292000,
+  4: 912000,
+  5: 760000,
+  6: 683880,
+  7: 640220,
+  8: 598270,
+  9: 558140,
+  10: 519830,
+  11: 483360,
+  12: 448700,
+  13: 415870,
+  14: 384860,
+  15: 355680,
+  16: 328320,
+  17: 302780,
+  18: 279070,
+  19: 257180,
+  20: 237120,
+  21: 218880,
+  22: 202460,
+  23: 187870,
+  24: 176010,
+  25: 164610,
+  26: 153670,
+  27: 143180,
+  28: 133150,
+  29: 123570,
+  30: 114450,
+  31: 107160,
+  32: 100770,
+  33: 95300,
+  34: 90740,
+  35: 87100,
+  36: 83630,
+  37: 80260,
+  38: 76970,
+  39: 73780,
+  40: 70680,
+  41: 67670,
+  42: 64750,
+  43: 61920,
+  44: 59190,
+  45: 56540,
+  46: 53990,
+  47: 51530,
+  48: 49160,
+  49: 46880,
+  50: 44690,
+  51: 42590,
+  52: 40580,
+  53: 38670,
+  54: 36840,
+  55: 35110,
+  56: 33470,
+  57: 31920,
+  58: 30640,
+  59: 29550,
+  60: 28640,
+  61: 27910,
+  62: 27380,
+  63: 26920,
+  64: 26490,
+  65: 26080,
+  66: 25680,
+  67: 25290,
+  68: 24920,
+  69: 24570,
+  70: 24240,
+  71: 23940,
+  72: 23740,
+  73: 23570,
+  74: 23420
 };
 
 const scoreboardSupabaseConfig = window.SUPABASE_CONFIG || { url: "", anonKey: "" };
@@ -319,13 +343,13 @@ function buildPayoutMap(competitors) {
 
   grouped.forEach((group, key) => {
     const startPos = parsePositionNumber(key);
-    if (!startPos || !MASTERS_PAYOUTS[startPos]) return;
+    if (!startPos || !PGA_CHAMPIONSHIP_PAYOUTS[startPos]) return;
 
     const tieCount = group.length;
     let total = 0;
 
     for (let pos = startPos; pos < startPos + tieCount; pos += 1) {
-      total += MASTERS_PAYOUTS[pos] || 0;
+      total += PGA_CHAMPIONSHIP_PAYOUTS[pos] || 0;
     }
 
     if (!total) return;
@@ -422,14 +446,14 @@ function seedScoreboardDemoTeam() {
     id: "demo-aces",
     teamName: "aces",
     teamOwner: "Demo",
-    totalPoints: 16.6208,
+    totalPoints: 16.3956,
     createdAt: new Date().toISOString(),
     players: [
-      { name: "Harris English", rank: 20, avgPoints: 3.4272 },
-      { name: "Akshay Bhatia", rank: 21, avgPoints: 3.3967 },
-      { name: "Viktor Hovland", rank: 22, avgPoints: 3.3338 },
-      { name: "Patrick Reed", rank: 23, avgPoints: 3.2964 },
-      { name: "Bryson DeChambeau", rank: 24, avgPoints: 3.1647 }
+      { name: "Harris English", rank: 21, avgPoints: 3.4897 },
+      { name: "Akshay Bhatia", rank: 23, avgPoints: 3.3718 },
+      { name: "Viktor Hovland", rank: 27, avgPoints: 3.1244 },
+      { name: "Patrick Reed", rank: 24, avgPoints: 3.3578 },
+      { name: "Bryson DeChambeau", rank: 28, avgPoints: 3.0519 }
     ]
   });
 
@@ -464,7 +488,7 @@ async function fetchTeamsForScoreboard() {
 async function fetchLeaderboardMap() {
   const endpoint =
     `https://site.web.api.espn.com/apis/site/v2/sports/golf/leaderboard` +
-    `?league=pga&event=${MASTERS_EVENT_ID}`;
+    `?league=pga&event=${PGA_CHAMPIONSHIP_EVENT_ID}`;
 
   const response = await fetch(endpoint, { credentials: "omit" });
   if (!response.ok) {
@@ -475,8 +499,8 @@ async function fetchLeaderboardMap() {
   const competitors =
     payload?.events?.[0]?.competitions?.[0]?.competitors || [];
 
-  window.__mastersLeaderboardPayload = payload;
-  window.__mastersLeaderboardCompetitors = competitors;
+  window.__pgaChampionshipLeaderboardPayload = payload;
+  window.__pgaChampionshipLeaderboardCompetitors = competitors;
   window.__patrickReedCompetitor = competitors.find((competitor) =>
     normalizePlayerName(competitor?.athlete?.displayName) === normalizePlayerName("Patrick Reed")
   );
@@ -658,10 +682,10 @@ async function renderScoreboard() {
     renderScoreboardRows(teams, leaderboardMap);
 
     if (status) {
-      status.textContent = "Live Masters positions, scores, and thru data are updating automatically.";
+      status.textContent = "Live PGA Championship positions, scores, and thru data are updating automatically.";
     }
     if (updated) {
-      updated.textContent = `Updated ${formatUpdatedTime(Date.now())} · Auto-refresh every 60 seconds`;
+      updated.textContent = `Updated ${formatUpdatedTime(Date.now())} · Auto-refresh every 10 minutes`;
     }
   } catch (error) {
     console.error(error);
