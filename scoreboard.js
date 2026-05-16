@@ -93,6 +93,12 @@ const scoreboardSupabaseClient =
 
 function normalizePlayerName(value) {
   return String(value || "")
+    .replace(/ø/g, "o")
+    .replace(/Ø/g, "O")
+    .replace(/å/g, "a")
+    .replace(/Å/g, "A")
+    .replace(/æ/g, "ae")
+    .replace(/Æ/g, "AE")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/\./g, "")
